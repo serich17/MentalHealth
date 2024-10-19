@@ -31,8 +31,6 @@ public class HelpFragment extends Fragment {
             binding = FragmentHelpBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
 
-            final TextView textView = binding.textHelp;
-            helpViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
             return root;
         }
 
