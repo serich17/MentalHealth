@@ -1,16 +1,15 @@
-package com.example.mentalhealthtracker.ui.chat;
+package com.example.mentalhealthtracker.ui.help;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ChatViewModel extends ViewModel {
-
+public class HelpViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
-    public ChatViewModel() {
+    public HelpViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Chat fragment");
+        mText.setValue("This is the Get Help fragment");
     }
 
     public LiveData<String> getText() {
