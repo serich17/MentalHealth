@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.RatingBar;
 
@@ -46,6 +47,14 @@ public class CalendarFragment extends Fragment {
                                 + dayOfMonth + " / "
                                 + month + " / "
                                 + year);
+            }
+        });
+
+        Button confirmButton = binding.calendarConfirmFeeling;
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
