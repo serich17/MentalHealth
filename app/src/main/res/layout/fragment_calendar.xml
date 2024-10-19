@@ -15,26 +15,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/feelingRating"
         style="@android:style/Widget.DeviceDefault.Light.RatingBar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:max="7"
-        android:numStars="5"
+        android:layout_marginTop="16dp"
+        android:indeterminateDrawable="@drawable/feeling_rating_good_bad"
+        android:numStars="10"
+        android:progressDrawable="@drawable/feeling_rating_good_bad"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CalendarQuestion" />
 
     <TextView
         android:id="@+id/CalendarQuestion"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/Calendar_Question"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <Button
+        android:id="@+id/calendar_confirmFeeling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:text="@string/calender_feelingConfirm"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feelingRating" />
 </androidx.constraintlayout.widget.ConstraintLayout>
