@@ -2,6 +2,11 @@ package com.example.mentalhealthtracker;
 
 import android.os.Bundle;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.time.LocalDateTime;
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +16,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.mentalhealthtracker.databinding.ActivityMainBinding;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.type.DateTime;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +41,35 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // create a new entry in the database, the datatypes will be integer, string, and timestamp
+        Map<Number, LocalDateTime> entry = new HashMap<>();
+        entry.put(5, LocalDateTime.now());
+        entry.put(10, LocalDateTime.now());
+
+
+        db.collection("entries")
+                .add(entry)
+                .addOnSuccessListener(documentReference -> {
+                    System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
+                })
+                .addOnFailureListener(e -> {
+                    System.out.println("Error adding document" + e);
+                });
+
+        db.collection("entries")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot document: queryDocumentSnapshots) {
+                            System.out.println(document.getId() + " => " + document.getId());
+                        }
+                })
+                .addOnFailureListener(e -> {
+                    System.out.println("Error getting documents" + e);
+                });
+
     }
 
 }
