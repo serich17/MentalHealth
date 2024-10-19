@@ -68,7 +68,7 @@ public class ChatFragment extends Fragment {
 
         // Add initial welcome message
         addMessage(new ChatMessage(
-                "Hi! I'm your AI assistant. How are you feeling today?",
+                "Hello! How are you feeling today?",
                 ChatMessage.TYPE_AI
         ));
 
