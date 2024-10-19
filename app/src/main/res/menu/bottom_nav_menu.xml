@@ -17,6 +17,7 @@
         android:title="@string/title_chat" />
     <item
         android:id="@+id/navigation_help"
+        android:icon="@mipmap/help_round"
         android:title="@string/title_help" />
 
 </menu>
