@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
@@ -49,19 +50,10 @@ public class CalendarFragment extends Fragment {
         binding = FragmentCalendarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        RatingBar feeling = binding.feelingRating;
-        feeling.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if (fromUser) {
-                    currentRating = (int)rating;
-                    Log.d("FeelingRating", "User rated: " + rating);
-                    addEntry(currentRating, "", LocalDateTime.now());
-                }
-            }
-        });
-
         CalendarView calenderFeeling = binding.calendarFeeling;
+        RatingBar feeling = binding.feelingRating;
+        EditText feelingBox = binding.textBox;
+
         calenderFeeling.setDate(System.currentTimeMillis());
         calenderFeeling.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -71,6 +63,17 @@ public class CalendarFragment extends Fragment {
                                 + dayOfMonth + " / "
                                 + month + " / "
                                 + year);
+            }
+        });
+
+        feeling.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (fromUser) {
+                    currentRating = (int)rating;
+                    Log.d("FeelingRating", "User rated: " + rating);
+                    addEntry(currentRating, "", LocalDateTime.now());
+                }
             }
         });
 
