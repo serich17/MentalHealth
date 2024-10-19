@@ -45,7 +45,11 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.legacy.support.v4)
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
-    implementation("com.google.ai.client.generativeai:generativeai-java:0.2.1")
+    // Required to use `ListenableFuture` from Guava Android for one-shot generation
+    implementation("com.google.guava:guava:31.0.1-android")
+
+    // Required to use `Publisher` from Reactive Streams for streaming operations
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.espresso.web)
     testImplementation(libs.junit)
