@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Mental Health Tracker</string>
+    <string name="app_name">Peace in Mind</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_chat">AI Chat</string>
+    <string name="title_help">Get Help</string>
+    <string name="Calendar_Question">How are you feeling today?</string>
 </resources>
