@@ -16,10 +16,35 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mentalhealthtracker.databinding.FragmentHomeBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
+    private LocalDateTime currentDate;
+
+
+
+    public void getEntriesForDate(LocalDateTime date) {
+        System.out.println("Getting entries for date: " + date);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("userEntries")
+                .whereEqualTo("timestamp", date)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (Map.Entry<String, Object> entry : task.getResult().toObjects(Map.Entry.class)) {
+                            Log.d("CalendarFragment", "Entry: " + entry.getKey() + " => " + entry.getValue());
+                        }
+                    } else {
+                        Log.d("CalendarFragment", "Error getting documents: ", task.getException());
+                    }
+                });
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,8 +70,10 @@ public class HomeFragment extends Fragment {
                 Log.d("Feeling-Calendar",
                         "User set the date to: "
                                 + dayOfMonth + " / "
-                                + month + " / "
+                                + (month+1) + " / "
                                 + year);
+                currentDate = LocalDateTime.of(year, month+1, dayOfMonth, 0, 0);
+                feelingBox.setText("You have not recorded any feelings for this day.");
             }
         });
 

@@ -26,6 +26,8 @@ public class CalendarFragment extends Fragment {
     private FragmentCalendarBinding binding;
     private int currentRating;
 
+    private LocalDateTime currentDate;
+
     public void addEntry(int mood, String note, LocalDateTime timestamp) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> entry = new HashMap<>();
@@ -41,6 +43,7 @@ public class CalendarFragment extends Fragment {
                     System.out.println("Error adding document" + e);
                 });
     }
+
 
     // Create the view object
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -68,8 +71,9 @@ public class CalendarFragment extends Fragment {
                 Log.d("Feeling-Calendar",
                         "User set the date to: "
                                 + dayOfMonth + " / "
-                                + month + " / "
+                                + (month+1) + " / "
                                 + year);
+                currentDate = LocalDateTime.of(year, month+1, dayOfMonth, 0, 0);
             }
         });
 
@@ -80,7 +84,6 @@ public class CalendarFragment extends Fragment {
                 if (fromUser) {
                     currentRating = (int)rating;
                     Log.d("FeelingRating", "User rated: " + rating);
-                    addEntry(currentRating, "", LocalDateTime.now());
                 }
             }
         });
@@ -89,7 +92,7 @@ public class CalendarFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addEntry(currentRating, feelingBox.getText().toString(), currentDate);
             }
         });
 
