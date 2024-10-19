@@ -42,6 +42,7 @@ public class CalendarFragment extends Fragment {
                 });
     }
 
+    // Create the view object
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         CalendarViewModel calendarViewModel =
@@ -50,11 +51,17 @@ public class CalendarFragment extends Fragment {
         binding = FragmentCalendarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        CalendarView calenderFeeling = binding.calendarFeeling;
-        RatingBar feeling = binding.feelingRating;
-        EditText feelingBox = binding.textBox;
+        CalendarView calenderFeeling = binding.calendarFeeling; // Calendar
+        RatingBar feeling = binding.feelingRating;              // Daily Star Rating
+        EditText feelingBox = binding.textBox;                  // Text Box
+        Button confirmButton = binding.calendarConfirmFeeling;  // Confirm button
 
+        // Setup page
         calenderFeeling.setDate(System.currentTimeMillis());
+
+        // Start listeners
+
+        // Calender Date Change
         calenderFeeling.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -66,6 +73,7 @@ public class CalendarFragment extends Fragment {
             }
         });
 
+        // Daily Rating Change
         feeling.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -77,7 +85,7 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-        Button confirmButton = binding.calendarConfirmFeeling;
+        // Confirm Button listener
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
