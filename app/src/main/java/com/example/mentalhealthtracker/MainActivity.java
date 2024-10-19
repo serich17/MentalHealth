@@ -2,6 +2,11 @@ package com.example.mentalhealthtracker;
 
 import android.os.Bundle;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.time.LocalDateTime;
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +16,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.mentalhealthtracker.databinding.ActivityMainBinding;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.type.DateTime;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +44,32 @@ public class MainActivity extends AppCompatActivity {
         assert navHostFragment != null;
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        NavigationUI.setupWithNavController(binding.navView, navController);
+        FirebaseApp.initializeApp(this);
+
+        // create a new entry in the database, the datatypes will be integer, string, and timestamp
+
+
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    // function to add a new entry to the database
+
+    // function to get all entries from the database
+    public void getEntries() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("entries")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            System.out.println(document.getId() + " => " + document.getData());
+                        }
+                    } else {
+                        System.out.println("Error getting documents: " + task.getException());
+                    }
+                });
     }
 
 }

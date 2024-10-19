@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="feelingRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@android:drawable/btn_star</item>
+        <item name="android:minHeight">23dip</item>
+        <item name="android:maxHeight">25dip</item>
+    </style>
+    <style name="feelingBoxStyle" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">#E2E2E2</item>
+    </style>
+</resources>

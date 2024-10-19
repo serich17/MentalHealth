@@ -7,4 +7,5 @@
     <string name="Calendar_Question">How are you feeling today?</string>
     <string name="send">Send</string>
     <string name="type_a_message">Type a message...</string>
+    <string name="calender_feelingConfirm">Confirm</string>
 </resources>

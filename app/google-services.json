@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "226686129722",
+    "project_id": "mental-health-tracker-87a1c",
+    "storage_bucket": "mental-health-tracker-87a1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226686129722:android:3b8f89b145a47d0c7ac703",
+        "android_client_info": {
+          "package_name": "com.example.mentalhealthtracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT3TjsQU279tJTM-6JClHUqA4V_BJy5qA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226686129722:android:bb01d935a8659f037ac703",
+        "android_client_info": {
+          "package_name": "com.mentalhealthtracker.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT3TjsQU279tJTM-6JClHUqA4V_BJy5qA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
