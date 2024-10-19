@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,19 @@ public class CalendarFragment extends Fragment {
                 if (fromUser) {
                     Log.d("FeelingRating", "User rated: " + rating);
                 }
+            }
+        });
+
+        CalendarView calenderFeeling = binding.calendarFeeling;
+        calenderFeeling.setDate(System.currentTimeMillis());
+        calenderFeeling.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Log.d("Feeling-Calendar",
+                        "User set the date to: "
+                                + dayOfMonth + " / "
+                                + month + " / "
+                                + year);
             }
         });
 
