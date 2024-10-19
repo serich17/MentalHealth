@@ -5,4 +5,6 @@
     <string name="title_chat">AI Chat</string>
     <string name="title_help">Get Help</string>
     <string name="Calendar_Question">How are you feeling today?</string>
+    <string name="send">Send</string>
+    <string name="type_a_message">Type a message...</string>
 </resources>
