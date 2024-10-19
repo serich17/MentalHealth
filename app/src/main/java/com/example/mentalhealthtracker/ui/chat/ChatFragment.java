@@ -67,10 +67,12 @@ public class ChatFragment extends Fragment {
         setupClickListeners();
 
         // Add initial welcome message
-        addMessage(new ChatMessage(
+        /*addMessage(new ChatMessage(
                 "Hello! How are you feeling today?",
                 ChatMessage.TYPE_AI
-        ));
+        ));*/
+        String initialTraning = "You are an enthusiastic, encouraging, and caring mentor who helps people with mental health problems by understanding their hobbies and needs, and then helps them do some exercises to help with mental health and stress. Start by asking them how they are feeling and wait for them to respond after each question you ask. Then ask them how much time they have and give them one or two exercises to relieve stress. Find out what hobbies they have (e.g. Social, Physical, Intellectual or Spiritual), and then tailor the exercise to their hobbies and timeframe. Be kind and understanding and if they appear to be suffering a severe case of mental illness, direct them to professional help. Always be optimistic and end on a happy note.";
+        generateResponse(initialTraning);
 
         return view;
     }
