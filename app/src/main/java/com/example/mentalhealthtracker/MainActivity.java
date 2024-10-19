@@ -55,21 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // function to add a new entry to the database
-    public void addEntry(int mood, String note, LocalDateTime timestamp) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> entry = new HashMap<>();
-        entry.put("mood", mood);
-        entry.put("note", note);
-        entry.put("timestamp", timestamp);
-        db.collection("entries")
-                .add(entry)
-                .addOnSuccessListener(documentReference -> {
-                    System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
-                })
-                .addOnFailureListener(e -> {
-                    System.out.println("Error adding document" + e);
-                });
-    }
 
     // function to get all entries from the database
     public void getEntries() {

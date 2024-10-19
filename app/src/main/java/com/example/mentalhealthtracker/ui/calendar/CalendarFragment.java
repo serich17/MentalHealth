@@ -12,10 +12,32 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mentalhealthtracker.databinding.FragmentCalendarBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CalendarFragment extends Fragment {
 
     private FragmentCalendarBinding binding;
+    private int currentRating;
+
+    public void addEntry(int mood, String note, LocalDateTime timestamp) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> entry = new HashMap<>();
+        entry.put("mood", mood);
+        entry.put("note", note);
+        entry.put("timestamp", timestamp);
+        db.collection("userEntries")
+                .add(entry)
+                .addOnSuccessListener(documentReference -> {
+                    System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
+                })
+                .addOnFailureListener(e -> {
+                    System.out.println("Error adding document" + e);
+                });
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,7 +52,9 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 if (fromUser) {
+                    currentRating = (int)rating;
                     Log.d("FeelingRating", "User rated: " + rating);
+                    addEntry(currentRating, "", LocalDateTime.now());
                 }
             }
         });
