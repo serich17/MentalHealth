@@ -13,9 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.mentalhealthtracker.databinding.FragmentChatBinding;
 import com.example.mentalhealthtracker.databinding.FragmentHelpBinding;
-import com.example.mentalhealthtracker.ui.chat.ChatViewModel;
 
 public class HelpFragment extends Fragment {
 
@@ -26,8 +24,8 @@ public class HelpFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
             HelpViewModel helpViewModel =
                     new ViewModelProvider(this).get(HelpViewModel.class);
 
