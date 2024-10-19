@@ -47,14 +47,20 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(binding.navView, navController);
         FirebaseApp.initializeApp(this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // create a new entry in the database, the datatypes will be integer, string, and timestamp
-        Map<Number, LocalDateTime> entry = new HashMap<>();
-        entry.put(5, LocalDateTime.now());
-        entry.put(10, LocalDateTime.now());
 
 
+        NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    // function to add a new entry to the database
+    public void addEntry(int mood, String note, LocalDateTime timestamp) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> entry = new HashMap<>();
+        entry.put("mood", mood);
+        entry.put("note", note);
+        entry.put("timestamp", timestamp);
         db.collection("entries")
                 .add(entry)
                 .addOnSuccessListener(documentReference -> {
@@ -63,19 +69,22 @@ public class MainActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     System.out.println("Error adding document" + e);
                 });
+    }
 
+    // function to get all entries from the database
+    public void getEntries() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("entries")
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                        for (QueryDocumentSnapshot document: queryDocumentSnapshots) {
-                            System.out.println(document.getId() + " => " + document.getId());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            System.out.println(document.getId() + " => " + document.getData());
                         }
-                })
-                .addOnFailureListener(e -> {
-                    System.out.println("Error getting documents" + e);
+                    } else {
+                        System.out.println("Error getting documents: " + task.getException());
+                    }
                 });
-
-        NavigationUI.setupWithNavController(navView, navController);
     }
 
 }
