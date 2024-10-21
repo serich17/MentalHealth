@@ -47,7 +47,7 @@ public class ChatFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         // Initialize Gemini
-        String apiKey = "AIzaSyAmstcWaJsoHMtfzoZw0bYeMZWg4jKf9vU"; // Replace with your actual API key
+        String apiKey = "ADD_API_KEY"; // Replace with your actual API key
         GenerationConfig.Builder config = new GenerationConfig.Builder();
                 config.temperature = 0.7f;
                 config.topK = 40;
